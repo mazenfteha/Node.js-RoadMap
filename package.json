@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mazenfteha/Node.js-RoadMap/issues"
   },
-  "homepage": "https://github.com/mazenfteha/Node.js-RoadMap#readme"
+  "homepage": "https://github.com/mazenfteha/Node.js-RoadMap#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
