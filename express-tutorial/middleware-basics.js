@@ -3,6 +3,8 @@ const app = express()
 
 // req => middleware => res
 
+
+
 const logger = (req,res,next) =>{
     const method = req.method
     const url = req.url
@@ -10,6 +12,8 @@ const logger = (req,res,next) =>{
     console.log(method, url, time)
     next()
 }
+
+//app.use(logger) will do the same but logger will be in another file and extende it 
 
 app.get('/', logger ,(req,res) => {
     res.send('Home')
