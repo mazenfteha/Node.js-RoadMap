@@ -1,6 +1,11 @@
 let { people } = require('../data')
+const Logger = require('../services/logger.service')
+
+const logger = new Logger('people')
 
 const gellPeople =  (req, res) => {
+    logger.info('Fetching list of people')
+    //logger.error('Error message');
     res.status(200).json({ success: true, data : people})
 }
 
@@ -62,5 +67,5 @@ module.exports = {
     createPerson,
     createPersonPostman,
     updatePerson,
-    deletePerson
+    deletePerson,
 }

@@ -15,7 +15,7 @@ module.exports = {
 // router.put('/:id', updatePerson)
 // router.delete('/:id', deletePerson)
 
-router.route('/').get(getPeople).post(createPerson)
+router.route('/').get(gellPeople).post(createPerson)
 router.route('/postman').post(createPersonPostman)
 router.route('/:id').put(updatePerson).delete(deletePerson)
 

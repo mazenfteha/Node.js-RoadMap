@@ -4,6 +4,8 @@ const app = express()
 const peopleRouter = require('./routes/people')
 const authRouter = require('./routes/auth')
 
+
+
 // static assets
 app.use(express.static('./methods-public'))
 
