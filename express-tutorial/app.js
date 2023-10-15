@@ -2,23 +2,15 @@ const express = require('express')
 const contentType = require('content-type')
 const getRawBody = require('raw-body')
 const bodyParser = require('body-parser')
+const hpp = require('hpp')
 
 const app = express()
 
 // First, use the bodyParser middleware to handle JSON requests
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
-app.use(function (req, res, next) {
-    getRawBody(req, {
-        length: req.headers['content-length'],
-        limit: '1mb',
-        encoding: contentType.parse(req).parameters.charset
-    }, function (err, string) {
-        if (err) return next(err)
-        req.text = string
-        next()
-    })
-})
+app.use(hpp())
+
 
 const peopleRouter = require('./routes/people')
 const authRouter = require('./routes/auth')
