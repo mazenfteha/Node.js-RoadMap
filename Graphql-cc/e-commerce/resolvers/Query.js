@@ -1,7 +1,34 @@
 exports.Query = {
     hello: () => 'Hello World',
-    products: (parent, args, {products}) => {
-        return products
+    products: (parent, {filter}, {products, reviews}) => {
+        let filteredProducts = products
+
+        if(filter) {
+            const { onSale, avgRating } = filter
+            // filter on onSale
+            if(onSale) {
+                filteredProducts = products.filter(product => {
+                    return product.onSale
+                })
+            }
+            // filter on avgRating
+            if([1,2,3,4,5].includes(avgRating)) {
+                filteredProducts = products.filter((product) => {
+                    let sumRating = 0;
+                    let numberOfReviews = 0;
+                    reviews.forEach((review) => {
+                        if(review.productId === product.id ) {
+                            sumRating += review.rating
+                            numberOfReviews++
+                        }
+                    })
+                    const avgProductRating = sumRating / numberOfReviews
+                    return avgProductRating >= avgRating;
+                })
+            }
+        }
+
+        return filteredProducts
     }, 
     product : (parent, args, {products})=> {
         const productId = args.id;

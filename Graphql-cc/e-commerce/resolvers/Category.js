@@ -1,6 +1,18 @@
 exports.Category = {
-    products: (parent, args, {products}) => {
+    products: (parent, {filter}, {products}) => {
         const categoryId = parent.id
-        return products.filter((product) =>product.categoryId === categoryId)
+        const categoryProducts =  products.filter((product) =>product.categoryId === categoryId)
+        let filteredCategoryProducts = categoryProducts;
+
+        if(filter) {
+            if(filter.onSale === true) {
+                filteredCategoryProducts = products.filter(product => {
+                    return product.onSale
+                })
+            }
+        }
+
+        return filteredCategoryProducts
+
     }
 }
