@@ -34,7 +34,7 @@ exports.Query = {
         const productId = args.id;
         return products.find(product => product.id === productId)
     },
-    categories: (parent, args, {products}) => {
+    categories: (parent, args, {categories}) => {
         return categories
     },
     category: (parent, args, {categories}) => {
