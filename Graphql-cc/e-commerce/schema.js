@@ -13,6 +13,12 @@ const typeDefs = gql`
         addCategory(input: AddCategoryInput!): Category!
         addProduct(input: AddProductInput!): Product!
         addReviews(input: addReviewsInput!): Reviews!
+        deleteCategory(id: ID!): Boolean!
+        deleteProduct(id: ID!): Boolean!
+        deleteReview(id: ID!): Boolean!
+        updateCategory(id:ID!, input: UpdateCategoryInput!): Category!
+        updateProduct(id:ID!, input: UpdateProductInput!): Product!
+        updateReview(id:ID!, input: UpdateReviewInput!): Reviews!
     }
 
     type Product {
@@ -45,6 +51,9 @@ const typeDefs = gql`
     input AddCategoryInput {
         name: String!
     }
+    input UpdateCategoryInput {
+        name: String!
+    }
     input AddProductInput {
         name: String!
         description: String!
@@ -52,9 +61,25 @@ const typeDefs = gql`
         image: String!
         price: Float!
         onSale: Boolean!
-        categoryId: String!
+        categoryId: String
+    }
+    input UpdateProductInput {
+        name: String!
+        description: String!
+        quantity: Int!
+        image: String!
+        price: Float!
+        onSale: Boolean!
+        categoryId: String
     }
     input addReviewsInput {
+        date: String!
+        title: String!
+        comment: String!
+        rating: Int!
+        productId: ID!
+    }
+    input UpdateReviewInput {
         date: String!
         title: String!
         comment: String!
